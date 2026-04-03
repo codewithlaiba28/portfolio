@@ -131,6 +131,15 @@ export const projects: Project[] = [
         liveLink: "https://currency-convertor-five-ebon.vercel.app/",
         githubLink: "https://github.com/codewithlaiba28/Currency_convertor",
     },
+    {
+        title: "Course Companion FTE",
+        desc: "An AI-native Digital Full-Time Equivalent educational tutor with a 24/7 deployed backend, adaptive learning paths, AI assessments, and a socratic AI Mentor powered by Cerebras & GPT-4o.",
+        tags: ["Next.js 15", "FastAPI", "Cerebras AI", "PostgreSQL", "Docker", "MCP"],
+        gradient: "from-gray-950 via-emerald-950 to-teal-900",
+        image: "/hackathon_iv_collection.png",
+        liveLink: "https://hackahton-iv-frontend.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/Hackahton-IV",
+    },
 ];
 
 const Projects: React.FC = () => {
