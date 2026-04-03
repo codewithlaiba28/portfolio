@@ -122,6 +122,15 @@ export const projects: Project[] = [
         liveLink: "https://watch-ecommerce-website.vercel.app/",
         githubLink: "https://github.com/codewithlaiba28/watch-ecommerce-website",
     },
+    {
+        title: "Currency Converter (Legacy)",
+        desc: "A real-time currency converter supporting multiple international currencies with live exchange rates, flag indicators, and a clean glassmorphism UI.",
+        tags: ["HTML5", "CSS3", "JavaScript", "API Integration", "Legacy"],
+        gradient: "from-gray-950 via-stone-900 to-emerald-950",
+        image: "/currency_converter_collection.png",
+        liveLink: "https://currency-convertor-five-ebon.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/Currency_convertor",
+    },
 ];
 
 const Projects: React.FC = () => {
