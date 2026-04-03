@@ -24,6 +24,15 @@ export const projects: Project[] = [
         githubLink: "https://github.com/codewithlaiba28/Hackathon-_II/tree/main/phase-II",
     },
     {
+        title: "Course Companion FTE",
+        desc: "An AI-native Digital Full-Time Equivalent educational tutor with a 24/7 deployed backend, adaptive learning paths, AI assessments, and a socratic AI Mentor powered by Cerebras & GPT-4o.",
+        tags: ["Next.js 15", "FastAPI", "Cerebras AI", "PostgreSQL", "Docker", "MCP"],
+        gradient: "from-gray-950 via-emerald-950 to-teal-900",
+        image: "/hackathon_iv_collection.png",
+        liveLink: "https://hackahton-iv-frontend.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/Hackahton-IV",
+    },
+    {
         title: "Essential Elegance",
         desc: "A luxury fashion landing page designed for modern minimalists, featuring timeless silhouettes and premium sustainable materials.",
         tags: ["Next.js", "Framer Motion", "Tailwind CSS", "TypeScript"],
@@ -132,13 +141,13 @@ export const projects: Project[] = [
         githubLink: "https://github.com/codewithlaiba28/Currency_convertor",
     },
     {
-        title: "Course Companion FTE",
-        desc: "An AI-native Digital Full-Time Equivalent educational tutor with a 24/7 deployed backend, adaptive learning paths, AI assessments, and a socratic AI Mentor powered by Cerebras & GPT-4o.",
-        tags: ["Next.js 15", "FastAPI", "Cerebras AI", "PostgreSQL", "Docker", "MCP"],
-        gradient: "from-gray-950 via-emerald-950 to-teal-900",
-        image: "/hackathon_iv_collection.png",
-        liveLink: "https://hackahton-iv-frontend.vercel.app/",
-        githubLink: "https://github.com/codewithlaiba28/Hackahton-IV",
+        title: "Weather App (Legacy)",
+        desc: "A responsive weather application providing real-time weather data and detailed metrics for cities worldwide with a clean glassmorphism UI.",
+        tags: ["HTML5", "CSS3", "JavaScript", "OpenWeather API", "Legacy"],
+        gradient: "from-stone-950 via-teal-950 to-emerald-950",
+        image: "/weather_app_collection.png",
+        liveLink: "https://wheather-app-xi-one.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/wheather_app",
     },
 ];
 
