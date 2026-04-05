@@ -1,4 +1,4 @@
-import { getChatResponse } from '../lib/ai/chatbot.ts';
+import { getChatResponse } from '../lib/ai/chatbot';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';

@@ -4,7 +4,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProjectCard from "@/components/ProjectCard";
-import { projects } from "@/components/Projects";
+import { projects } from "@/lib/data/projects";
 import ParticleBackground from "@/components/ParticleBackground";
 import ScrollAnimation from "@/components/ScrollAnimation";
 
