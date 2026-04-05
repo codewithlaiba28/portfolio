@@ -1,0 +1,43 @@
+LK
+Laiba Khan
+AI & Web Developer
+
+CONTACT
+MAIL codewithlaiba28@gmail.com
+TEL 03453155319
+CITY Karachi, Pakistan
+GIT github.com/codewithlaiba28
+IN linkedin.com/in/laiba-khan-2a4b63335
+
+EDUCATION
+BSCS — Ongoing (Virtual University of Pakistan)
+Intermediate (Abdullah College)
+Computer Course — Ongoing (PIAIC)
+
+CERTIFICATIONS
+Prompt Engineering
+MCP Certificate
+Agentic AI — Level 1
+Agentic AI — Level 2
+Speckitplus
+
+AI & CLI TOOLS
+Claude CLI, Qwen CLI, n8n Automation, OpenAI Agent SDK, Vibe Coding, MCP Framework, Speckitplus
+
+ABOUT ME
+Passionate AI & Web Developer from Karachi with hands-on expertise in modern web technologies and cutting-edge Agentic AI.
+Currently pursuing:
+- BSCS at Virtual University (Ongoing)
+- Computer Course at PIAIC (Ongoing)
+Building autonomous web applications using Claude CLI, Qwen CLI, and AI agent frameworks.
+
+TECHNICAL SKILLS
+Frontend: HTML5, CSS3, JavaScript, React.js, Next.js, Tailwind CSS
+Backend/AI: Python, OpenAI Agent SDK, n8n, Agentic AI
+Specialty: Autonomous Websites, Prompt Engineering, Vibe Coding, MCP
+
+PROJECTS & EXPERIENCE
+Autonomous Website Builder: Builds complete full-stack websites from specs using Claude CLI & Qwen CLI. Zero manual coding via AI spec-driven workflow.
+Agentic AI Applications: Developed AI agents using OpenAI Agent SDK and MCP framework. Specialized in Level 1 & 2 workflows.
+n8n Workflow Automation: Designed and deployed complex automation pipelines using n8n for end-to-end automation.
+Next.js Full-Stack Projects: Built and deployed production-ready Next.js apps with React and Tailwind CSS.
