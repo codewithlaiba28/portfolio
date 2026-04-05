@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Plus_Jakarta_Sans, Space_Mono } from "next/font/google";
 import "./globals.css";
+import Chatbot from "@/components/Chatbot";
 
 const headingFont = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable} font-body antialiased`}
       >
         {children}
+        <Chatbot />
       </body>
     </html>
   );
