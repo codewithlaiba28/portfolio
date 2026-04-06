@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, User, Bot, Loader2, Sparkles, ExternalLink } from "lucide-react";
+import { MessageSquare, X, Send, User, Bot, Loader2, ExternalLink, Paperclip } from "lucide-react";
 
 interface Message {
     id: string;
@@ -92,6 +92,11 @@ const MessageBubble: React.FC<{ msg: Message }> = ({ msg }) => {
     // [PROJECT_CARD: ...] or [RESUME_BUTTON]
     const parts = msg.text.split(/(\[PROJECT_CARD: (.*?)\]|\[RESUME_BUTTON\])/g).filter(Boolean);
 
+    // Check if any project cards or resume button exist in this message
+    const hasProjectCard = parts.some(p => p.startsWith("[PROJECT_CARD:"));
+    const hasResumeButton = parts.some(p => p === "[RESUME_BUTTON]");
+    const hasSpecialContent = hasProjectCard || hasResumeButton;
+
     return (
         <div className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
             <div className={`flex gap-2 max-w-[98%] ${msg.sender === "user" ? "flex-row-reverse" : "flex-row"}`}>
@@ -116,9 +121,12 @@ const MessageBubble: React.FC<{ msg: Message }> = ({ msg }) => {
                                 const [title, desc, image, live, github] = cardContent.split(' | ').map(p => p.trim());
                                 const cardData: ProjectCardData = { title, desc, image, liveLink: live, githubLink: github };
                                 return <ProjectMiniCard key={index} project={cardData} />;
-                            } else if (!part.includes("[PROJECT_CARD:") && part !== "[RESUME_BUTTON]") {
-                                // Regular text (if not empty from filter)
+                            } else if (!hasSpecialContent && !part.includes("[PROJECT_CARD:") && part !== "[RESUME_BUTTON]") {
+                                // Only show plain text if there are NO project cards or resume buttons in this message
                                 return <span key={index}>{part}</span>;
+                            } else if (hasSpecialContent && !part.startsWith("[PROJECT_CARD:") && part !== "[RESUME_BUTTON]") {
+                                // Skip text when special content (project cards / resume) is present
+                                return null;
                             }
                             return null;
                         })}
@@ -215,13 +223,13 @@ const Chatbot: React.FC = () => {
                         initial={{ opacity: 0, scale: 0.8, y: 50, transformOrigin: "bottom right" }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.8, y: 50 }}
-                        className="mb-4 w-[350px] md:w-[430px] h-[450px] md:h-[550px] flex flex-col glass rounded-3xl overflow-hidden shadow-[0_20px_50px_var(--color-glow)] border border-accent-primary/20"
+                        className="mb-4 w-[350px] md:w-[430px] h-[450px] md:h-[550px] flex flex-col bg-[#0d1117] rounded-xl overflow-hidden shadow-[0_20px_50px_var(--color-glow)] border border-accent-primary/20"
                     >
                         {/* Header */}
                         <div className="px-6 py-4 bg-gradient-to-r from-accent-primary/20 to-teal-500/10 border-b border-accent-primary/10 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="p-2 bg-accent-primary/10 rounded-xl">
-                                    <Sparkles className="w-5 h-5 text-accent-primary" />
+                                <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-accent-primary to-teal-400 flex items-center justify-center shadow-md">
+                                    <span className="text-[#0d1117] font-black text-sm tracking-tight leading-none">LK</span>
                                 </div>
                                 <div>
                                     <h3 className="font-heading font-bold text-sm tracking-tight text-text-primary">Laiba&apos;s AI Agent</h3>
@@ -266,23 +274,49 @@ const Chatbot: React.FC = () => {
                         </div>
 
                         {/* Input */}
-                        <div className="p-4 bg-white/5 border-t border-white/10">
-                            <div className="relative flex items-center">
-                                <input
-                                    type="text"
+                        <div className="p-4 border-t border-white/5">
+                            <div
+                                className="relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.03] transition-all duration-200"
+                                style={{ boxShadow: input ? '0 0 0 1.5px var(--color-accent-primary)' : 'none' }}
+                            >
+                                <textarea
                                     value={input}
-                                    onChange={(e) => setInput(e.target.value)}
-                                    onKeyPress={(e) => e.key === "Enter" && handleSend()}
-                                    placeholder="Ask anything about her experience..."
-                                    className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-6 pr-14 text-sm focus:outline-none focus:border-accent-primary/50 transition-all placeholder:text-text-muted text-text-primary"
+                                    onChange={(e) => {
+                                        setInput(e.target.value);
+                                        e.target.style.height = 'auto';
+                                        e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+                                    }}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' && !e.shiftKey) {
+                                            e.preventDefault();
+                                            handleSend();
+                                        }
+                                    }}
+                                    placeholder="Ask a question..."
+                                    rows={1}
+                                    className="w-full bg-transparent resize-none py-3.5 px-4 text-sm focus:outline-none placeholder:text-text-muted text-text-primary leading-relaxed scrollbar-hide"
+                                    style={{ minHeight: '46px', maxHeight: '120px' }}
                                 />
-                                <button
-                                    onClick={handleSend}
-                                    disabled={!input.trim() || isLoading}
-                                    className="absolute right-2 p-3 bg-accent-primary text-bg-primary rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:grayscale"
-                                >
-                                    <Send className="w-4 h-4" />
-                                </button>
+                                <div className="flex items-center justify-between px-3 pb-2.5">
+                                    <button
+                                        type="button"
+                                        className="p-1.5 text-text-muted hover:text-accent-primary transition-colors rounded-lg hover:bg-accent-primary/10"
+                                        title="Attach file"
+                                    >
+                                        <Paperclip className="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        onClick={handleSend}
+                                        disabled={!input.trim() || isLoading}
+                                        className="p-2 rounded-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+                                        style={{
+                                            background: input.trim() ? 'var(--color-accent-primary)' : 'rgba(255,255,255,0.08)',
+                                            color: input.trim() ? '#0d1117' : 'var(--color-text-muted)'
+                                        }}
+                                    >
+                                        <Send className="w-3.5 h-3.5" />
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
