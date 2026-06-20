@@ -1,10 +1,8 @@
-import { Cerebras } from '@cerebras/cerebras_cloud_sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { sql } from '../neon';
 import { stringSimilarity } from 'string-similarity-js';
 
-const client = new Cerebras({
-    apiKey: process.env.CEREBRAS_API_KEY,
-});
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 interface Project {
     title: string;
@@ -50,16 +48,14 @@ Skills: Next.js, React, TypeScript, Python, OpenAI Agent SDK, n8n, MCP, Prompt E
             return { ...p, score };
         }).sort((a, b) => b.score - a.score);
 
-        // Dynamic Project Selection: 
-        // - Include any project with a score > 0.15
-        // - OR include the top 3 projects if no high matches found
-        let relevantProjects = rankedProjects.filter(p => p.score > 0.1); // Lowered threshold slightly for more variety
+        // Dynamic Project Selection
+        let relevantProjects = rankedProjects.filter(p => p.score > 0.1);
         if (relevantProjects.length < 5) {
             relevantProjects = rankedProjects.slice(0, 5);
         }
-        relevantProjects = relevantProjects.slice(0, 12); // Provided more projects to the AI
+        relevantProjects = relevantProjects.slice(0, 12);
 
-        const projectContext = relevantProjects.map(p => 
+        const projectContext = relevantProjects.map(p =>
             `- ${p.title}: ${p.description} (Tech: ${p.tags.join(', ')}) [ImagePath: ${p.image}] [LiveLink: ${p.live_link}] [GithubLink: ${p.github_link}]`
         ).join('\n');
 
@@ -96,19 +92,33 @@ Context:
 ${context}
 `;
 
-        const response = (await client.chat.completions.create({
-            model: 'llama3.1-8b', 
-            messages: [
-                { role: 'system', content: systemPrompt },
-                ...history.map(msg => ({ role: (msg.role === 'assistant' ? 'assistant' : 'user') as "user" | "assistant", content: msg.content })),
-                { role: 'user', content: userMessage }
-            ],
-            temperature: 0.7,
-            max_tokens: 1000,
-        })) as any;
+        // Build Gemini chat history (convert 'assistant' -> 'model')
+        // Gemini requires history to always start with a 'user' message
+        let geminiHistory = history.map(msg => ({
+            role: msg.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: msg.content }],
+        }));
+        // Drop any leading 'model' messages to satisfy Gemini's validation
+        while (geminiHistory.length > 0 && geminiHistory[0].role === 'model') {
+            geminiHistory.shift();
+        }
 
-        const rawContent = response.choices[0].message.content;
-        
+        const model = genAI.getGenerativeModel({
+            model: 'gemini-2.5-flash-lite',
+            systemInstruction: systemPrompt,
+        });
+
+        const chat = model.startChat({
+            history: geminiHistory,
+            generationConfig: {
+                temperature: 0.7,
+                maxOutputTokens: 1000,
+            },
+        });
+
+        const result = await chat.sendMessage(userMessage);
+        const rawContent = result.response.text();
+
         // Output Filtering: Post-process the text to strip out hallucinated project cards
         let filteredContent = rawContent;
         const cardRegex = /\[PROJECT_CARD:(.*?)\]/g;
@@ -116,16 +126,14 @@ ${context}
         while ((match = cardRegex.exec(rawContent)) !== null) {
             const cardContent = match[1];
             const parts = cardContent.split('|').map(p => p.trim());
-            // Verify if the image path matches an actual project in the DB
             if (parts.length >= 3) {
                 const imagePath = parts[2];
                 const isRealProject = dbProjects.some(p => p.image === imagePath);
                 if (!isRealProject) {
-                    // It's a hallucination! Remove this card from the content.
                     filteredContent = filteredContent.replace(match[0], '');
                 }
             } else {
-                 filteredContent = filteredContent.replace(match[0], '');
+                filteredContent = filteredContent.replace(match[0], '');
             }
         }
 
