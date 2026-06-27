@@ -10,6 +10,15 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        title: "HeroDad Father's Day 2026",
+        desc: "An AI-powered celebration platform for Father's Day featuring a personalized wish and shairi generator, dynamic framer motion animations, and a responsive modern UI.",
+        tags: ["Next.js", "Framer Motion", "Google Gemini AI", "Tailwind CSS"],
+        gradient: "from-indigo-950 via-purple-900 to-slate-900",
+        image: "/fathers_day_2026_collection.png",
+        liveLink: "https://fathers-day-2026-lilac.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/fathers-day-2026",
+    },
+    {
         title: "EMPOWER Car Dealership",
         desc: "A high-end, fully responsive car dealership website featuring continuous 'self-drawing' SVG path animations, scroll-aware navigation, and cinematic transitions.",
         tags: ["Next.js", "Tailwind CSS", "React", "Animations", "Fully Responsive"],
