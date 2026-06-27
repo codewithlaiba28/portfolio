@@ -10,6 +10,15 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        title: "EMPOWER Car Dealership",
+        desc: "A high-end, fully responsive car dealership website featuring continuous 'self-drawing' SVG path animations, scroll-aware navigation, and cinematic transitions.",
+        tags: ["Next.js", "Tailwind CSS", "React", "Animations", "Fully Responsive"],
+        gradient: "from-red-950 via-gray-900 to-blue-950",
+        image: "/empower_car_collection.png",
+        liveLink: "https://empower-two-flame.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/car-project",
+    },
+    {
         title: "Physical AI & Humanoid Robotics",
         desc: "A comprehensive interactive textbook and platform for mastering Physical AI, ROS 2, and Humanoid Robotics development.",
         tags: ["Docusaurus", "React", "TypeScript", "ROS 2", "Claude Code", "Speckit"],
