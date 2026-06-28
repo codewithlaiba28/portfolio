@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio & AI Assistant
 
-## Getting Started
+A modern, highly interactive personal portfolio website built with Next.js, featuring an integrated AI chatbot. The portfolio showcases projects, skills, and experience with a sleek, responsive design and smooth animations.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Modern Tech Stack**: Built with Next.js 14, React, and TypeScript.
+- **Beautiful UI/UX**: Styled with Tailwind CSS and animated using Framer Motion.
+- **AI Chatbot Integration**: Custom AI assistant built using Google Generative AI and Cerebras Cloud SDK to answer questions and interact with visitors.
+- **Database Integrated**: Uses Neon serverless PostgreSQL for seamless data management.
+- **Contact Form**: Direct messaging capabilities powered by EmailJS.
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing.
+- **Icons**: Sleek and modern iconography from Lucide React.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Database**: [Neon](https://neon.tech/) (Serverless Postgres)
+- **AI/ML**: Google Generative AI, Cerebras Cloud SDK
+- **Email Services**: [EmailJS](https://www.emailjs.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+Make sure you have Node.js installed on your machine.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/codewithlaiba28/portfolio.git
+   ```
 
-## Deploy on Vercel
+2. Navigate into the project directory:
+   ```bash
+   cd portfolio
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Install the dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Set up your environment variables:
+   Create a `.env` or `.env.local` file in the root of your project and add the necessary API keys for:
+   - Neon Database
+   - Google Generative AI / Cerebras API
+   - EmailJS
+
+5. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📂 Project Structure Highlights
+
+- `app/`: Next.js App Router pages and layouts.
+- `lib/`: Utility functions, database integrations, AI configurations (e.g., `chatbot.ts`), and project data.
+- `scripts/`: Custom scripts for database migration (`migrate-to-neon.mjs`) and asset processing.
+- `public/`: Static assets like images.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page if you want to contribute.
+
+## 📄 License
+
+This project is open-source and available under the [MIT License](LICENSE).
