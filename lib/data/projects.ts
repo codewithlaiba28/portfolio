@@ -10,6 +10,24 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        title: "LUMEN - Sneaker Store AI",
+        desc: "A luxury AI-driven sneaker store platform featuring interactive foot style & size analysis, personalized shoe recommendations, bespoke fitting preview, and an AI Concierge chatbot.",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "AI Recommender", "Interactive UI"],
+        gradient: "from-stone-950 via-rose-950 to-gray-950",
+        image: "/sneaker_store_collection.png",
+        liveLink: "https://sneaker-store-tawny.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/Sneaker-Store-AI-chat-describe-your-foot-style-size-shoe-recommender",
+    },
+    {
+        title: "BeautySkin - Skincare Brand AI",
+        desc: "A luxury AI-driven skincare platform featuring an interactive skin type quiz, personalized daily skincare routine generator, tailored product recommendations, and an AI Concierge assistant.",
+        tags: ["Next.js", "TypeScript", "Tailwind CSS", "AI Recommender", "Skin Quiz"],
+        gradient: "from-stone-900 via-amber-950 to-rose-950",
+        image: "/skincare_brand_collection.png",
+        liveLink: "https://skincarebrand-ai.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/SkincareBrand-AI-skin-type-quiz-Personalized-product-recommender",
+    },
+    {
         title: "EMPOWER Car Dealership",
         desc: "A high-end, fully responsive car dealership website featuring continuous 'self-drawing' SVG path animations, scroll-aware navigation, and cinematic transitions.",
         tags: ["Next.js", "Tailwind CSS", "React", "Animations", "Fully Responsive"],
@@ -44,6 +62,24 @@ export const projects: Project[] = [
         image: "/hackathon_iv_collection.png",
         liveLink: "https://hackahton-iv-frontend.vercel.app/",
         githubLink: "https://github.com/codewithlaiba28/Hackahton-IV",
+    },
+    {
+        title: "Happy Birthday Rameen Afzal",
+        desc: "A warm golden-themed celebratory tribute platform featuring personalized birthday wishes, elegant typography, interactive memory cards, and a special August 23rd tribute edition UI.",
+        tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "Celebration UI"],
+        gradient: "from-amber-950 via-stone-900 to-yellow-950",
+        image: "/rameen_birthday_collection.png",
+        liveLink: "https://rameen-birthday-zeta.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/Rameen_Birthday",
+    },
+    {
+        title: "Laiba Khan Birthday Platform",
+        desc: "A heartfelt 28th July birthday celebration platform featuring dynamic particle heart animations, interactive wish submission cards, personal tribute galleries, and responsive UI.",
+        tags: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "Interactive UI"],
+        gradient: "from-emerald-950 via-teal-900 to-stone-950",
+        image: "/laiba_birthday_collection.png",
+        liveLink: "https://laibabirthday.vercel.app/",
+        githubLink: "https://github.com/codewithlaiba28/Birthday-2026",
     },
     {
         title: "Essential Elegance",
